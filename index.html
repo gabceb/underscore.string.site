@@ -1,0 +1,739 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="target-densitydpi=device-dpi" />
+  <meta name="HandheldFriendly" content="true"/>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link href="css/index.css" rel="stylesheet">
+  <title>String.Underscore.js</title>
+</head>
+<body>
+
+  <div id="sidebar" class="interface">
+
+    <a class="toc_title" href="#">
+      String.Underscore.js <span class="version">(1.5.2)</span>
+    </a>
+    <ul class="toc_section">
+      <li>&raquo; <a href="https://github.com/epeli/underscore.string">GitHub Repository</a></li>
+      <li>&raquo; <a href="docs/underscore.html">Annotated Source</a></li>
+    </ul>
+
+    <a class="toc_title" href="#">
+      Introduction
+    </a>
+
+    <a class="toc_title" href="#collections">
+      Strings
+    </a>
+    <ul class="toc_section">
+      <li>- <a href="#numberFormat">numberFormat</a></li>
+      <li>- <a href="#levenshtein">levenshtein</a></li>
+      <li>- <a href="#capitalize">capitalize</a></li>
+      <li>- <a href="#chop">chop</a></li>
+      <li>- <a href="#clean">clean</a></li>
+      <li>- <a href="#chars">chars</a></li>
+      <li>- <a href="#swapCase">swapCase</a></li>
+      <li>- <a href="#include">include</a></li>
+      <li>- <a href="#includes">includes (removed)</a></li>
+      <li>- <a href="#count">count</a></li>
+      <li>- <a href="#escapeHTML">escapeHTML</a></li>
+      <li>- <a href="#unescapeHTML">unescapeHTML</a></li>
+      <li>- <a href="#insert">insert</a></li>
+      <li>- <a href="#isBlank">isBlank</a></li>
+      <li>- <a href="#join">join</a></li>
+      <li>- <a href="#lines">lines</a></li>
+      <li>- <a href="#splice">splice</a></li>
+      <li>- <a href="#startsWith">startsWith</a></li>
+      <li>- <a href="#endsWith">endsWith</a></li>
+      <li>- <a href="#succ">succ</a></li>
+      <li>- <a href="#strip">strip</a></li>
+      <li>- <a href="#lstrip">lstrip</a></li>
+      <li>- <a href="#rstrip">rstrip</a></li>
+      <li>- <a href="#titleize">titleize</a></li>
+      <li>- <a href="#classify">classify</a></li>
+      <li>- <a href="#underscored">underscored</a></li>
+      <li>- <a href="#dasherize">dasherize</a></li>
+      <li>- <a href="#humanize">humanize</a></li>
+      <li>- <a href="#ltrim">ltrim</a></li>
+      <li>- <a href="#rtrim">rtrim</a></li>
+      <li>- <a href="#prune">prune</a></li>
+      <li>- <a href="#words">words</a></li>
+      <li>- <a href="#sprintf">sprintf</a></li>
+      <li>- <a href="#pad">pad</a></li>
+      <li>- <a href="#lpad">lpad</a></li>
+      <li>- <a href="#rpad">rpad</a></li>
+      <li>- <a href="#center">center</a></li>
+      <li>- <a href="#ljust">ljust</a></li>
+      <li>- <a href="#rjust">rjust</a></li>
+      <li>- <a href="#toNumber">toNumber</a></li>
+      <li>- <a href="#strRight">strRight</a></li>
+      <li>- <a href="#strRightBack">strRightBack</a></li>
+      <li>- <a href="#strLeft">strLeft</a></li>
+      <li>- <a href="#strLeftBack">strLeftBack</a></li>
+      <li>- <a href="#stripTags">stripTags</a></li>
+      <li>- <a href="#toSentence">toSentence</a></li>
+      <li>- <a href="#toSentenceSerial">toSentenceSerial</a></li>
+      <li>- <a href="#repeat">repeat</a></li> 
+      <li>- <a href="#surround">surround</a></li>
+      <li>- <a href="#unquote">unquote</a></li>
+      <li>- <a href="#slugify">slugify</a></li>
+      <li>- <a href="#naturalCmp">naturalCmp</a></li>
+      <li>- <a href="#toBoolean">toBoolean</a></li>
+      <li>- <a href="#repeat">repeat</a></li>
+    </ul>
+
+    <a class="toc_title" href="#links">
+      Links
+    </a>
+
+    <a class="toc_title" href="#changelog">
+      Change Log
+    </a>
+
+  </div>
+
+  <div class="container">
+
+    <p id="introduction">
+      <img id="logo" src="images/underscore.png" alt="Underscore.js" />
+    </p>
+
+    <p>
+      <a href="https://github.com/epeli/underscore.string">Underscore.string</a> is string manipulation extension for JavaScript that you can use with or without Underscore.js
+    </p>
+
+    <p>
+      A complete <a href="test/">Test &amp; Benchmark Suite</a>
+      is included for your perusal.
+    </p>
+
+    <p>
+      You may also read through the <a href="docs/underscore.html">annotated source code</a>.
+    </p>
+
+    <p>
+      The project is
+      <a href="https://github.com/epeli/underscore.string">hosted on GitHub</a>.
+      You can report bugs and discuss features on the
+      <a href="https://github.com/epeli/underscore.string/issues">issues page</a>.
+    </p>
+
+    <h2>Downloads <i style="padding-left: 12px; font-size:12px;">(Right-click, and use "Save As")</i></h2>
+
+    <table>
+      <tr>
+        <td><a href="underscore.js">Development Version (2.3.0)</a></td>
+        <td><i>19kb, Uncompressed with Plentiful Comments</i></td>
+      </tr>
+      <tr>
+        <td><a href="underscore-min.js">Production Version (2.3.0)</a></td>
+        <td>
+          <i>9kb, Packed and Gzipped</i>
+          &nbsp;<small>(<a href="underscore-min.map">Source Map</a>)</small>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><div class="rule"></div></td>
+      </tr>
+    </table>
+
+    <div id="documentation">
+
+      <h2 id="collections">Strings Functions</h2>
+
+      <p id="numberFormat">
+        <b class="header">numberFormat</b><code>_.numberFormat(number, [ decimals=0, decimalSeparator='.', orderSeparator=','])</code>
+        <br />
+        Formats the numbers.
+      </p>
+      <pre>
+_.numberFormat(1000, 2)
+=&gt; "1,000.00"
+_.numberFormat(123456789.123, 5, '.', ',');
+=&gt; "123,456,789.12300"</pre>
+
+      <p id="levenshtein">
+        <b class="header">levenshtein</b><code>_.levenshtein(string1, string2)</code>
+        <br />
+        Calculates Levenshtein distance between two strings.
+      </p>
+      <pre>
+_.levenshtein('kitten', 'kittah');
+=&gt; 2</pre>
+
+      <p id="capitalize">
+        <b class="header">capitalize</b><code>_.capitalize(string)</code>
+        <br />
+        Converts first letter of the string to uppercase.
+      </p>
+      <pre>
+_.capitalize("foo Bar");
+=&gt; "Foo Bar"
+</pre>
+
+      <p id="chop">
+        <b class="header">chop</b><code>_.chop(string, step)</code>
+        <br />
+        
+      </p>
+      <pre>
+_.chop('whitespace', 3);
+=&gt; ['whi','tes','pac','e']
+</pre>
+
+      <p id="clean">
+        <b class="header">clean</b><code>_.clean(str)</code>
+        <br />
+        Compress some whitespaces to one.
+      </p>
+      <pre>
+_.clean(" foo    bar   ");
+=&gt; "foo bar"
+</pre>
+
+      <p id="chars">
+        <b class="header">chars</b><code>_.chars(str)</code>
+        <br />
+        Converts a string into an array of characters
+      </p>
+      <pre>
+_.chars('Hello');
+=&gt; ['H','e','l','l','o']
+</pre>
+
+      <p id="swapCase">
+        <b class="header">swapCase</b><code>_.swapCase(str)</code>
+        <br />
+        Returns a copy of the string in which all the case-based characters have had their case swapped.
+      </p>
+      <pre>
+_.swapCase('hELLO');
+=&gt; 'Hello'
+</pre>
+
+      <p id="include">
+        <b class="header">include</b><code>_.include(string, substring)</code>
+        <br />
+        Tests if string contains a substring.
+      </p>
+      <pre>
+_.includes("foobar", "ob");
+=&gt; true
+</pre>
+
+      <p id="includes">
+        <b class="header">includes</b><code>_.includes(string, substring)</code>
+        <br />
+        <b>includes</b> function was removed but you can create it in this way, for compatibility with previous versions:  
+      </p>
+      <pre>
+_includes = _.str.include
+</pre>
+
+      <p id="count">
+        <b class="header">count</b><code>_.count(string, substring)</code>
+        <br />
+        Counts the ocurrences of a substring for a given string
+      </p>
+      <pre>
+_.('Hello world').count('l');
+=&gt; 3
+</pre>
+
+      <p id="unescapeHTML">
+        <b class="header">unescapeHTML</b><code>_.unescapeHTML(string)</code>
+        <br />
+        Converts entity characters to HTML equivalents.
+      </p>
+      <pre>
+_.('&lt;div&gt;Blah blah blah&lt;/div&gt;').unescapeHTML();
+=&gt; '<div>Blah blah blah</div>'
+</pre>
+
+      <p id="insert">
+        <b class="header">insert</b><code>_.insert(string, index, substing)</code>
+        <br />
+        Inserts a substring on a the specified index.
+      </p>
+      <pre>
+_.('Hello ').insert(6, 'world')
+=&gt; 'Hello world'
+</pre>
+
+      <p id="isBlank">
+        <b class="header">isBlank</b><code>_.isBlank(string)</code>
+        <br />
+        Tests if a string is empty
+      </p>
+      <pre>
+_.('').isBlank(); =&gt; true
+_.('\n').isBlank(); =&gt; true
+_.(' ').isBlank(); =&gt; true
+_.('a').isBlank(); =&gt; false
+</pre>
+
+      <p id="join">
+        <b class="header">join</b><code>_.join(separator, *strings)</code>
+        <br />
+        Joins strings together with given separator.
+      </p>
+      <pre>
+_.join(" ", "foo", "bar")
+=&gt; "foo bar"
+</pre>
+
+      <p id="lines">
+        <b class="header">lines</b><code>_.lines(str)</code>
+        <br />
+        Splits a string into an array based on the new line (\n) character.
+      </p>
+      <pre>
+_.lines("Hello\nWorld");
+=&gt; ["Hello", "World"]
+</pre>
+
+      <p id="reverse">
+        <b class="header">reverse</b><code>_.reverse(string)</code>
+        <br />
+        Returns a reversed string.<br>Available only through _.str object, because Underscore has function with the same name.
+      </p>
+      <pre>
+_.str.reverse("foobar");
+=&gt; 'raboof'
+</pre>
+
+      <p id="splice">
+        <b class="header">splice</b><code>_.splice(string, index, howmany, substring)</code>
+        <br />
+        Like an array splice.
+      </p>
+      <pre>
+_.('https://edtsech@bitbucket.org/edtsech/underscore.strings').splice(30, 7, 'epeli');
+=&gt; 'https://edtsech@bitbucket.org/epeli/underscore.strings'
+</pre>
+
+      <p id="startsWith">
+        <b class="header">startsWith</b><code>_.startsWith(string, starts)</code>
+        <br />
+        Checks whether a string starts with another substring.
+      </p>
+      <pre>
+_.("image.gif").startsWith("image");
+=&gt; true
+
+</pre>
+
+      <p id="endsWith">
+        <b class="header">endsWith</b><code>_.endsWith(string, ends)</code>
+        <br />
+        Checks whether a string ends with another substring.
+      </p>
+      <pre>
+_.("image.gif").endsWith("gif")
+=&gt; true
+</pre>
+
+      <p id="succ">
+        <b class="header">succ</b><code>_.succ(str)</code>
+        <br />
+        Returns the successor to str.
+      </p>
+      <pre>
+_.('a').succ(); =&gt; 'b'
+_.('A').succ(); =&gt; 'B'
+
+</pre>
+
+      <p id="camelize">
+        <b class="header">camelize</b><code>_.camelize(string)</code>
+        <br />
+        Converts underscored or dasherized string to a camelized one.
+      </p>
+      <pre>
+_('-moz-transform').camelize();
+=&gt; 'MozTransform'
+</pre>
+
+      <p id="classify">
+        <b class="header">classify</b><code>_.classify(string)</code>
+        <br />
+        Converts string to camelized class name.
+      </p>
+      <pre>
+_.('some_class_name').classify();
+=&gt; 'SomeClassName'
+</pre>
+
+      <p id="underscored">
+        <b class="header">underscored</b><code>_.underscored(string)</code>
+        <br />
+        Converts a camelized or dasherized string into an underscored one.
+      </p>
+      <pre>
+_.('MozTransform').underscored();
+=&gt; 'moz_transform'
+</pre>
+
+      <p id="dasherize">
+        <b class="header">dasherize</b><code>_.dasherize(string)</code>
+        <br />
+        Converts a underscored or camelized string into an dasherized one.
+      </p>
+      <pre>
+_.('MozTransform').dasherize();
+=&gt; '-moz-transform'
+</pre>
+
+      <p id="trim">
+        <b class="header">trim</b><code>_.trim(string, [characters])</code>
+        <br />
+        Trims defined characters from begining and ending of the string. Defaults to whitespace characters.
+      </p>
+      <pre>
+_.trim("  foobar   ") =&gt; "foobar"
+_.trim("_-foobar-_") =&gt; "foobar"
+</pre>
+
+      <p id="ltrim">
+        <b class="header">ltrim</b><code>_.ltrim(string, [characters])</code>
+        <br />
+        Left trim. Similar to <a href="#trim">trim</a>, but only for left side.
+      </p>
+
+      <p id="rtrim">
+        <b class="header">rtrim</b><code>_.rtrim(string, [characters])</code>
+        <br />
+        Right trim. Similar to <a href="#trim">trim</a>, but only for right side.
+      </p>
+
+      <p id="truncate">
+        <b class="header">truncate</b><code>_.truncate(string, length, truncateString)</code>
+        <br />
+        Truncates a string to the specified number of characters. TruncateString defaults to '...'
+      </p>
+      <pre>
+_.('Hello world').truncate(5); =&gt; 'Hello...'
+_.('Hello').truncate(10); =&gt; 'Hello'
+</pre>
+
+      <p id="prune">
+        <b class="header">prune</b><code>_.prune(string, length, pruneString)</code>
+        <br />
+        Elegant version of <a href="#truncate">truncate</a>. Makes sure the pruned string does not exceed the original length. Avoids half-chopped words when truncating.
+      </p>
+      <pre>
+_.('Hello, world').prune(5); =&gt; 'Hello...'
+_.('Hello, world').prune(8); =&gt; 'Hello...'
+
+_.('Hello, world').prune(5, ' (read a lot more)'); =&gt; 'Hello, world' (as adding "(read a lot more)" would be longer than the original string)
+_.('Hello, cruel world').prune(15); =&gt; 'Hello, cruel...'
+_.('Hello').prune(10); =&gt; 'Hello'
+</pre>
+
+      <p id="words">
+        <b class="header">words</b><code>_.words(str, delimiter=/\s+/)</code>
+        <br />
+        Split string by delimiter (String or RegExp), /\s+/ by default.
+      </p>
+      <pre>
+_.words("   I   love   you   "); =&gt; ["I","love","you"]
+_.words("I_love_you", "_"); =&gt; ["I","love","you"]
+_.words("I-love-you", /-/); =&gt; ["I","love","you"]
+_.words("    "); =&gt; []
+</pre>
+
+      <p id="without">
+        <b class="header">without</b><code>_.without(array, [*values])</code>
+        <br />
+        Returns a copy of the <b>array</b> with all instances of the <b>values</b>
+        removed.
+      </p>
+      <pre>
+_.without([1, 2, 1, 0, 3, 1, 4], 0, 1);
+=&gt; [2, 3, 4]
+</pre>
+
+      <p id="sprintf">
+        <b class="header">sprintf</b><code>_.sprintf(string format, *arguments)</code>
+        <br />
+        C like string formatting. Credits goes to <a href="http://www.diveintojavascript.com/projects/sprintf-for-javascript">Alexandru Marasteanu</a>. For more detailed documentation, see the <a href="http://www.diveintojavascript.com/projects/sprintf-for-javascript">original page</a>.
+      </p>
+      <pre>
+_.union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+=&gt; [1, 2, 3, 101, 10]
+</pre>
+
+      <p id="intersection">
+        <b class="header">intersection</b><code>_.intersection(*arrays)</code>
+        <br />
+        Computes the list of values that are the intersection of all the <b>arrays</b>.
+        Each value in the result is present in each of the <b>arrays</b>.
+      </p>
+      <pre>
+_.sprintf("%.1f", 1.17);
+=&gt; "1.2"
+</pre>
+
+      <p id="pad">
+        <b class="header">pad</b><code>_.pad(string, length, [padStr, type])</code>
+        <br />
+        Pads a string with characters until the total string length is equal to the passed length parameter. By default, pads on the left with the space char (" "). padStr is truncated to a single character if necessary.
+      </p>
+      <pre>
+_.pad("1", 8); =&gt; "       1"
+_.pad("1", 8, '0'); =&gt; "00000001"
+_.pad("1", 8, '0', 'right'); =&gt; "10000000"
+_.pad("1", 8, '0', 'both'); =&gt; "00001000"
+_.pad("1", 8, 'bleepblorp', 'both'); =&gt; "bbbb1bbb"
+</pre>
+
+      <p id="lpad">
+        <b class="header">lpad</b><code>_.lpad(str, length, [padStr])</code>
+        <span class="alias">Alias: <b>pad(str, length, padStr, 'left')</b></span>
+        <br />
+        Left-pad a string.
+      </p>
+      <pre>
+_.lpad("1", 8, '0'); =&gt; "00000001"
+</pre>
+
+      <p id="rpad">
+        <b class="header">rpad</b><code>_.rpad(str, length, [padStr])</code>
+        <span class="alias">Alias: <b>pad(str, length, padStr, 'right')</b></span>
+        <br />
+        Right-pad a string.
+      </p>
+      <pre>
+_.rpad("1", 8, '0'); =&gt; "10000000"
+</pre>
+
+      <p id="lrpad">
+        <b class="header">lrpad</b><code>_.lrpad(str, length, [padStr])</code>
+        <span class="alias">Alias: <b>pad(str, length, padStr, 'both')</b></span>
+        <br />
+        Left/Right-pad a string.
+      </p>
+      <pre>
+_.lrpad("1", 8, '0'); =&gt; "00001000"
+</pre>
+
+      <p id="center">
+        <b class="header">center</b><code>_.center(str, length, [padStr])</code>
+        <span class="alias">Alias: <b>lrpad</b></span>
+      </p>
+
+      <p id="ljust">
+        <b class="header">ljust</b><code>_.ljust(str, length, [padStr])</code>
+        <span class="alias">Alias: <b>rpad</b></span>
+      </p>
+
+      <p id="rjust">
+        <b class="header">rjust</b><code>_.rjust(str, length, [padStr])</code>
+        <span class="alias">Alias: <b>lpad</b></span>
+      </p>
+
+      <p id="toNumber">
+        <b class="header">toNumber</b><code>_.toNumber(string, [decimals])</code>
+        <br />
+        Parse string to number. Returns NaN if string can't be parsed to number.
+      </p>
+      <pre>
+_.('2.556').toNumber(); =&gt; 3
+_.('2.556').toNumber(1); =&gt; 2.6
+</pre>
+
+      <p id="strRight">
+        <b class="header">strRight</b><code>_.strRight(string, pattern)</code>
+        <br />
+        Searches a string from left to right for a pattern and returns a substring consisting of the characters in the string that are to the right of the pattern or all string if no match found.
+      </p>
+      <pre>
+_.('This_is_a_test_string').strRight('_');
+=&gt; "is_a_test_string"
+</pre>
+
+      <p id="strRightBack">
+        <b class="header">strRightBack</b><code>_.strRightBack(string, pattern)</code>
+        <br />
+        Searches a string from right to left for a pattern and returns a substring consisting of the characters in the string that are to the right of the pattern or all string if no match found.
+      </p>
+      <pre>
+_.('This_is_a_test_string').strRightBack('_');
+=&gt; "string"
+</pre>
+
+      <p id="strLeft">
+        <b class="header">strLeft</b><code>_.strLeft(string, pattern)</code>
+        <br />
+        Searches a string from left to right for a pattern and returns a substring consisting of the characters in the string that are to the left of the pattern or all string if no match found.
+      </p>
+      <pre>
+_.('This_is_a_test_string').strLeft('_');
+=&gt; "This"
+</pre>
+
+      <p id="strLeftBack">
+        <b class="header">strLeftBack</b><code>_.strLeftBack(string, pattern)</code>
+        <br />
+        Searches a string from right to left for a pattern and returns a substring consisting of the characters in the string that are to the left of the pattern or all string if no match found.
+      </p>
+      <pre>
+_.('This_is_a_test_string').strLeftBack('_');
+=&gt; "This_is_a_test"
+</pre>
+
+      <p id="stripTags">
+        <b class="header">stripTags</b><code>_.stripTags(string)</code>
+        <br />
+        Removes all html tags from string.
+      </p>
+      <pre>
+_.('a <a href="#">link</a>').stripTags();
+=&gt; 'a link'
+
+_.('a <a href="#">link</a>&lt;script&gt;alert(&quot;hello world!&quot;)&lt;/script&gt;').stripTags();
+=&gt; 'a linkalert("hello world!")'
+</pre>
+
+      <p id="toSentence">
+        <b class="header">toSentence</b><code>_.toSentence(array, [delimiter, lastDelimiter])</code>
+        <br />
+        Join an array into a human readable sentence.
+      </p>
+      <pre>
+_.toSentence(['jQuery', 'Mootools', 'Prototype']);
+=&gt; 'jQuery, Mootools and Prototype'
+
+_.toSentence(['jQuery', 'Mootools', 'Prototype'], ', ', ' unt ');
+=&gt; 'jQuery, Mootools unt Prototype'
+</pre>
+
+      <p id="toSentenceSerial">
+        <b class="header">toSentenceSerial</b><code>_.toSentenceSerial(array, [delimiter, lastDelimiter])</code>
+        <br />
+        The same as <a href="#toSentence">toSentence</a>, but adjusts delimeters to use <a href="http://en.wikipedia.org/wiki/Serial_comma">Serial comma</a>.
+      </p>
+      <pre>
+_.toSentenceSerial(['jQuery', 'Mootools']);
+=&gt; 'jQuery and Mootools'
+
+_.toSentenceSerial(['jQuery', 'Mootools', 'Prototype']);
+=&gt; 'jQuery, Mootools, and Prototype'
+
+_.toSentenceSerial(['jQuery', 'Mootools', 'Prototype'], ', ', ' unt ');
+=&gt; 'jQuery, Mootools, unt Prototype'
+</pre>
+
+      <p id="repeat">
+        <b class="header">repeat</b><code>_.repeat(string, count, [separator])</code>
+        <br />
+        Repeats a string count times.
+      </p>
+      <pre>
+_.repeat("foo", 3)
+=&gt; 'foofoofoo';
+
+_.repeat("foo", 3, "bar")
+=&gt; 'foobarfoobarfoo'
+</pre>
+
+      <p id="surround">
+        <b class="header">surround</b><code>_.surround(string, wrap)</code>
+        <br />
+        Surround a string with another string.
+      </p>
+      <pre>
+_.surround("foo", "ab");
+=&gt; 'abfooab'
+</pre>
+
+      <p id="quote">
+        <b class="header">quote</b><code>_.quote(string, quoteChar) or _.q(string, quoteChar)</code>
+        <br />
+        Quotes a string. quoteChar defaults to ".
+      </p>
+      <pre>
+_.quote('foo', quoteChar);
+=&gt; '"foo"'
+</pre>
+
+      <p id="unquote">
+        <b class="header">unquote</b><code>_.unquote(string, quoteChar)</code>
+        <br />
+        Unquotes a string. quoteChar defaults to ".
+      </p>
+      <pre>
+_.unquote('"foo"');
+=&gt; 'foo'
+_.unquote("'foo'", "'");
+=&gt; 'foo'
+</pre>
+
+      <p id="slugify">
+        <b class="header">slugify</b><code>_.slugify(string)</code>
+        <br />
+        Transform text into a URL slug. Replaces whitespaces, accentuated, and special characters with a dash.
+      </p>
+      <pre>
+_.slugify("Un éléphant à l'orée du bois");
+=&gt; 'un-elephant-a-loree-du-bois'
+</pre>
+
+      <p id="naturalCmp">
+        <b class="header">naturalCmp</b><code>array.sort(_.naturalCmp)</code>
+        <br />
+        Naturally sort strings like humans would do.
+      </p>
+
+      <pre>
+['foo20', 'foo5'].sort(_.naturalCmp);
+=&gt; [ 'foo5', 'foo20' ]
+</pre>
+
+      <p id="toBoolean">
+        <b class="header">toBoolean</b><code> _.toBoolean(string) or _.toBool(string)</code>
+        <br />
+        Turn strings that can be commonly considered as booleas to real booleans. Such as "true", "false", "1" and "0". This function is case insensitive.
+      </p>
+      <pre>
+_.toBoolean("true") =&gt; true
+_.toBoolean("FALSE") =&gt; false
+_.toBoolean("random") =&gt; undefined
+</pre>
+      
+      <p>
+      It can be customized by giving arrays of truth and falsy value matcher as parameters. Matchers can be also RegExp objects.
+      </p>
+      <pre>
+_.toBoolean("truthy", ["truthy"], ["falsy"]); =&gt; true
+_.toBoolean("true only at start", [/^true/]); =&gt; true
+</pre>
+
+      <h2 id="changelog">Change Log</h2>
+
+      <p>
+        <b class="header">2.3.3</b> &mdash; <small><i>July 15, 2013</i></small> &mdash; <a href="https://github.com/epeli/underscore.string/compare/v2.3.2...2.3.3">Diff</a><br />
+        <ul>
+          <li>
+            Add <tt>toBoolean</tt>
+          </li>
+          <li>
+            Add <tt>unquote</tt>
+          </li>
+          <li>
+            Add quote char option to <tt>quote</tt>
+          </li>
+          <li>
+            Support dash-separated words in <tt>titleize</tt>
+          </li>
+        </ul>
+      </p>
+  </div>
+
+</body>
+</html>
