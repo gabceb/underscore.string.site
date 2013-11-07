@@ -87,10 +87,6 @@
       <li>- <a href="#repeat">repeat</a></li>
     </ul>
 
-    <a class="toc_title" href="#links">
-      Links
-    </a>
-
     <a class="toc_title" href="#changelog">
       Change Log
     </a>
@@ -225,7 +221,7 @@ _.includes("foobar", "ob");
       <p id="includes">
         <b class="header">includes</b><code>_.includes(string, substring)</code>
         <br />
-        <b>includes</b> function was removed but you can create it in this way, for compatibility with previous versions:  
+        Function was removed but you can create it in this way, for compatibility with previous versions:  
       </p>
       <pre>
 _includes = _.str.include
@@ -241,14 +237,24 @@ _.('Hello world').count('l');
 =&gt; 3
 </pre>
 
+      <p id="escapeHTML">
+        <b class="header">escapeHTML</b><code>_.escapeHTML(string)</code>
+        <br />
+        Converts HTML special characters to their entity equivalents.
+      </p>
+      <pre>
+_.('&lt;div&gt;Blah blah blah&lt;/div&gt;').escapeHTML();
+=&gt; '&amp;lt;div&amp;gt;Blah blah blah&amp;lt;/div&amp;gt;'
+</pre>
+
       <p id="unescapeHTML">
         <b class="header">unescapeHTML</b><code>_.unescapeHTML(string)</code>
         <br />
         Converts entity characters to HTML equivalents.
       </p>
       <pre>
-_.('&lt;div&gt;Blah blah blah&lt;/div&gt;').unescapeHTML();
-=&gt; '<div>Blah blah blah</div>'
+_.('&amp;lt;div&amp;gt;Blah blah blah&amp;lt;/div&amp;gt;').unescapeHTML();
+=&gt; '&lt;div&gt;Blah blah blah&lt;/div&gt;'
 </pre>
 
       <p id="insert">
