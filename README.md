@@ -3,7 +3,7 @@ Underscore.string site
 
 A site for underscore.string inspired by the underscorejs.org site
 
-You can take a look at this page at http://gabceb.github.io/underscore.string.site/
+This site is available at http://gabceb.github.io/underscore.string.site/
 
 TO DO
 ====
